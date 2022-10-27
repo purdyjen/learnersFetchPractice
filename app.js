@@ -4,14 +4,17 @@
     If your team has time, update our code using the async/await keywords!
 */
 
-function makeCall() {
+const makeCall = async () => {
   // Use the fetch api to display some simple user data to the console!
-  url = "https://reqres.in/api/users";  
-
-  
-  fetch() // call the fetch api with the correct input argument!
-    .then() // convert the returned data into a json using the object's built-in methods.
-    .then() // use the resulting json to display some of our user information in the console.
-    .catch(); // console.log an error message in case something goes wrong.
-
+  try {
+    const response = await fetch("https://reqres.in/api/users");
+    if (response.ok) {
+      const jsonResponse = await response.json();
+      return console.log(jsonResponse);
+    }
+    throw new Error("Request failed!");
+  } catch (error) {
+    console.log(error);
+  }
+  // console.log an error message in case something goes wrong.
 };
